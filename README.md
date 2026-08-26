@@ -1,76 +1,64 @@
+# 🚗 ESP32 Bluetooth RC Car
 
-# ESP32 Bluetooth Controlled RC Car
+![ESP32](https://img.shields.io/badge/ESP32-Controller-blue?logo=espressif)
+![Bluetooth](https://img.shields.io/badge/Bluetooth-Wireless-0082FC?logo=bluetooth)
+![Arduino](https://img.shields.io/badge/Arduino-IDE-00979D?logo=arduino)
+![L298N](https://img.shields.io/badge/Driver-L298N-orange)
 
-## Author
-**Bu_Thy**
+A simple **4-wheel Bluetooth-controlled RC car** built using an **ESP32** and **L298N motor driver**.
 
----
-
-## 📌 Project Overview
-
-This project is a **Bluetooth-controlled RC car** built using an **ESP32 development board** and an **L298N motor driver**.
-
-The ESP32 uses its **built-in Bluetooth** to receive commands from a mobile device and control the DC motors.
+The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and control the four DC motors.
 
 ---
 
-## Features
+## ✨ Features
 
-- Bluetooth wireless control
-- Forward, Backward, Left, and Right movement
-- Variable motor speed control
-- Forward and backward differential steering
-- No external HC-05 Bluetooth module required
-
----
-
-## Components Required
-
-1. ESP32 Development Board
-2. L298N Motor Driver
-3. DC Motors × 2 or 4
-4. Wheels × 2 or 4
-5. RC Car Chassis
-6. Battery Pack
-7. Jumper Wires
-8. Switch
-9. USB Cable
-
-### Optional Components
-
-- 3S Li-ion Battery Pack
-- 3S Li-ion BMS
-- 3S Li-ion Charging Module
+- 📱 Bluetooth control
+- ⬆️ Forward / Backward
+- ⬅️ Left / Right
+- ⚡ Variable speed control
+- 🔄 Differential steering
+- 🔌 No HC-05 module required
 
 ---
 
-## Project Cost
+## 🧰 Components
 
-| # | Component | Price (₹) |
-|---|---|---:|
-| 1 | ESP32 Development Board | — |
-| 2 | L298N Motor Driver | — |
-| 3 | DC Motors | — |
-| 4 | Wheels | — |
-| 5 | RC Car Chassis | — |
-| 6 | Battery Pack | — |
-| 7 | Jumper Wires | — |
-| 8 | Switch | — |
-
-### Total Project Cost
-
-**To be updated**
-
-> Note: The total cost depends on the components and prices used for the project.
+| Component | Qty. |
+|---|---:|
+| ESP32 Development Board | 1 |
+| L298N Motor Driver | 1 |
+| DC Gear Motors | 4 |
+| Wheels | 4 |
+| 3.7V Li-ion Cells | 3 |
+| Chassis | 1 |
+| Jumper Wires | 1 set |
+| Switch | 1 |
 
 ---
 
-## 🔌 Connections Diagram
+## 💰 Cost
 
-<img width="907" height="656" alt="WhatsApp Image 2026-08-25 at 10 35 59 PM" src="https://github.com/user-attachments/assets/d4b5a68a-2d36-4edd-ad8c-66afa666d14b" />
+| Component | Price |
+|---|---:|
+| ESP32 | ₹375 |
+| L298N | ₹128 |
+| DC Motors × 4 | ₹176 |
+| Wheels × 4 | ₹76 |
+| Li-ion Cells × 3 | ₹135 |
+| Jumper Wires | ₹50 |
+| Switch | ₹10 |
+| **Total** | **₹950** |
 
+*Prices based on RoboCaze and may vary.*
 
-### ESP32 to L298N
+---
+
+## 🔌 Circuit
+
+<img width="907" height="656" alt="ESP32 Bluetooth RC Car Circuit Diagram" src="https://github.com/user-attachments/assets/d4b5a68a-2d36-4edd-ad8c-66afa666d14b" />
+
+### ESP32 → L298N
 
 | L298N | ESP32 |
 |---|---|
@@ -82,111 +70,116 @@ The ESP32 uses its **built-in Bluetooth** to receive commands from a mobile devi
 | ENB | GPIO 33 |
 | GND | GND |
 
-### Motor Connections
+### Motors
 
 | L298N | Motor |
 |---|---|
-| OUT1 | Motor A |
-| OUT2 | Motor A |
-| OUT3 | Motor B |
-| OUT4 | Motor B |
+| OUT1 + OUT2 | Left Motors |
+| OUT3 + OUT4 | Right Motors |
+
+> Motors on each side are connected together according to the motor driver's current capability.
 
 ---
 
-## Power Connections
+## 🔋 Power
 
-- Battery (+) → **L298N motor supply**
-- Battery (−) → **L298N GND**
-- ESP32 GND → **L298N GND**
+**3S Battery (+)** → **L298N Motor Supply**
 
-### Important
+**3S Battery (−)** → **L298N GND**
 
-- ESP32 and L298N must have a **common GND**.
+**3S Battery** → **Buck Converter** → **ESP32 5V/VIN**
+
+**ESP32 GND** → **L298N GND**
+
+> ⚠️ A fully charged 3S Li-ion pack reaches **12.6V**. Do not connect it directly to the ESP32 3.3V pin.
+
+---
+
+## 📱 Bluetooth Control
+
+Connect your phone to:
+
+**`ESP32_B-Ty`**
+
+Compatible controller apps include:
+
+- Arduino Bluetooth Control
+- Arduino Car
+- Bluetooth RC Controller
+
+### Control
+
+| Command | Movement |
+|---|---|
+| ⬆️ | Forward |
+| ⬇️ | Backward |
+| ⬅️ | Left |
+| ➡️ | Right |
+| ⏹️ | Stop |
+
+---
+
+## ⚙️ How It Works
+
+```text
+📱 Phone
+   │
+   │ Bluetooth
+   ▼
+ESP32
+   │
+   │ GPIO + PWM
+   ▼
+L298N
+   │
+   ▼
+DC Motors
+```
+
+The smartphone sends a command → ESP32 receives it → ESP32 controls the L298N → motors move accordingly.
+
+---
+
+## 💻 Code
+
+The Arduino sketch is located in:
+
+```text
+src/ESP32_Bluetooth_RC_Car.ino
+```
+
+The code handles Bluetooth communication, motor direction, and PWM speed control.
+
+---
+
+## 📸 Project
+
+### RC Car
+
+![RC Car](images/rc_car.jpg)
+
+### Wiring
+
+![Wiring](images/wiring.jpg)
+
+---
+
+## ⚠️ Notes
+
+- Keep **ESP32 and L298N GND connected**.
 - Do not connect motors directly to ESP32 GPIO pins.
-- Do not connect the battery directly to the ESP32 3.3V pin.
-- Check the voltage rating of the motor driver and motors.
 - Check battery polarity before powering the circuit.
-- A fully charged 3S Li-ion battery can reach approximately **12.6V**.
+- Use a suitable **3S BMS and charger** for the battery pack.
+- Make sure motor current is within the L298N's capability.
 
 ---
 
+## 👨‍💻 Author
 
-## 📱 Control App
+**Bu_Thy**
 
-The car can be controlled using any compatible **Bluetooth Classic controller or terminal application** that allows custom character commands.
-
-The application should send the commands listed above.
-
----
-
-## How It Works
-
-1. The ESP32 is powered on.
-2. The ESP32 initializes Bluetooth.
-3. The mobile device connects to **ESP32_B-Ty**.
-4. The mobile application sends a movement command.
-5. The ESP32 receives and processes the command.
-6. The ESP32 sends control signals to the L298N.
-7. The L298N drives the DC motors according to the command.
-
-### System Flow
-
-```text
-Mobile Phone
-     |
- Bluetooth
-     |
-     v
-   ESP32
-     |
- GPIO + PWM
-     |
-     v
-   L298N
-     |
-     v
- DC Motors
-```
+*Robotics • ESP32 • Arduino • Embedded Systems*
 
 ---
 
-## Software Requirements
-
-### Arduino IDE
-
-The project can be programmed using the **Arduino IDE** with the ESP32 board package installed.
-
-
----
-
-
-## ⚠️ Common Mistakes
-
-* No common GND between ESP32 and L298N
-* Incorrect motor driver connections
-* Incorrect ENA/ENB connections
-* Incorrect IN1/IN2/IN3/IN4 connections
-* Connecting motors directly to ESP32 GPIO pins
-* Incorrect battery polarity
-* Using an unsuitable battery voltage
-* Exceeding the L298N current rating
-
----
-
-## 🔋 Battery Precautions
-
-If using a 3S Li-ion battery:
-
-```text
-Nominal voltage = 11.1V
-Fully charged = 12.6V
-```
-
-* Use a suitable 3S BMS.
-* Use a proper 3S Li-ion charger.
-* Check battery polarity before connection.
-* Do not short-circuit the battery.
-* Disconnect the battery before modifying the circuit.
-
----
-
+⭐ If you found this project useful, consider giving it a star!
