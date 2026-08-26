@@ -17,9 +17,7 @@ The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and 
 - ⬆️ Forward / Backward
 - ⬅️ Left / Right
 - ⚡ Variable speed control
-- 🔄 Differential steering
-- 🔌 No HC-05 module required
-
+- 
 ---
 
 ## 🧰 Components
@@ -28,11 +26,11 @@ The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and 
 |---|---:|
 | ESP32 Development Board | 1 |
 | L298N Motor Driver | 1 |
-| DC Gear Motors | 4 |
+| DC Motors | 4 |
 | Wheels | 4 |
 | 3.7V Li-ion Cells | 3 |
 | Chassis | 1 |
-| Jumper Wires | 1 set |
+| Jumper Wires (Female-Female) | 1 |
 | Switch | 1 |
 
 ---
@@ -56,8 +54,7 @@ The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and 
 
 ## 🔌 Circuit
 
-<img width="907" height="656" alt="ESP32 Bluetooth RC Car Circuit Diagram" src="https://github.com/user-attachments/assets/d4b5a68a-2d36-4edd-ad8c-66afa666d14b" />
-
+<img width="907" height="656" alt="WhatsApp Image 2026-08-25 at 10 35 59 PM" src="https://github.com/user-attachments/assets/f03928ca-4a6f-44d6-a593-d6386218f4a8" />
 ### ESP32 → L298N
 
 | L298N | ESP32 |
@@ -77,9 +74,6 @@ The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and 
 | OUT1 + OUT2 | Left Motors |
 | OUT3 + OUT4 | Right Motors |
 
-> Motors on each side are connected together according to the motor driver's current capability.
-
----
 
 ## 🔋 Power
 
@@ -95,11 +89,7 @@ The ESP32 uses its built-in Bluetooth to receive commands from a smartphone and 
 
 ---
 
-## 📱 Bluetooth Control
-
-Connect your phone to:
-
-**`ESP32_B-Ty`**
+## 📱 Bluetooth Control App
 
 Compatible controller apps include:
 
