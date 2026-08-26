@@ -144,23 +144,9 @@ The smartphone sends a command → ESP32 receives it → ESP32 controls the L298
 
 The Arduino sketch is located in:
 
-```text
-src/ESP32_Bluetooth_RC_code.ino
-```
+👉 [**ESP32_Bluetooth_RC_code.ino**](src/ESP32_Bluetooth_RC_code.ino)
 
 The code handles Bluetooth communication, motor direction, and PWM speed control.
-
----
-
-## 📸 Project
-
-### RC Car
-
-![RC Car](images/rc_car.jpg)
-
-### Wiring
-
-![Wiring](images/wiring.jpg)
 
 ---
 
